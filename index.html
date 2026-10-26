@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Caja La Sagrada Familia</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+</head>
+<body>
+
+    <div class="barra_naranja"></div>
+
+    <div class="cabecera">
+        <div class="ancho center">
+            <img src="imagnees/logo_cabecera.png" alt="Logo">
+        </div>
+    </div>
+
+    <div class="encabezado_titulo center">
+        <h1>DÉJANOS CONOCERTE</h1>
+        <div class="linea_roja"></div>
+    </div>
+
+    <div class="ancho contenedor_formulario">
+
+        <div class="titulo_formulario center">
+            ¡ Compártenos tu información !
+        </div>
+
+        <div class="descripcion_formulario center">
+            Déjanos tus datos personales y nosotros nos
+            comunicaremos contigo lo más pronto posible.
+        </div>
+
+        <form name="formulariovalidacion" id="formulario">
+
+            <div class="columnas">
+
+                <div class="columna_izquierda">
+
+                    <div class="campo">
+                        <input type="text" id="nombrecompleto"
+                        name="nombre"
+                        class="elementoformulario"
+                        placeholder="Nombre Completo *">
+                    </div>
+
+                    <div class="campo">
+                        <input type="email" id="email"
+                        name="email"
+                        class="elementoformulario"
+                        placeholder="Correo Electronico *">
+                    </div>
+
+                    <div class="campo">
+                        <input type="tel" id="celular"
+                        name="celular"
+                        class="elementoformulario"
+                        placeholder="Celular *">
+                    </div>
+
+                    <div class="campo">
+                        <input type="text" id="ciudad"
+                        name="ciudad"
+                        class="elementoformulario"
+                        placeholder="Ciudad">
+                    </div>
+
+                    <div class="campo">
+                        <input type="text" id="localidad"
+                        name="localidad"
+                        class="elementoformulario"
+                        placeholder="Localidad">
+                    </div>
+
+                </div>
+
+                <div class="columna_derecha">
+
+                    <div class="campo">
+                        <input type="text" id="estado"
+                        name="estado"
+                        class="elementoformulario"
+                        placeholder="Estado">
+                    </div>
+
+                    <div class="campo">
+                        <input type="text" id="colonia"
+                        name="colonia"
+                        class="elementoformulario"
+                        placeholder="Colonia">
+                    </div>
+
+                    <div class="campo">
+                        <select id="area" name="area"
+                        class="elementoformulario">
+
+                            <option value="">
+                                Elige tu área de interes *
+                            </option>
+                            <option value="cajas">Cajas</option>
+                            <option value="servicios">Servicios</option>
+                            <option value="asesoramiento">
+                                Asesoramiento Financiero
+                            </option>
+                            <option value="gestoria">
+                                Gestoría y Cobranza
+                            </option>
+                            <option value="credito">Crédito</option>
+                            <option value="juridico">Jurídico</option>
+                            <option value="archivo">Archivo</option>
+                            <option value="mercadotecnia">
+                                Mercadotecnia
+                            </option>
+                            <option value="diligencias">
+                                Diligencias
+                            </option>
+                            <option value="compras">Compras</option>
+                            <option value="intendencia">
+                                Intendencia
+                            </option>
+                            <option value="auditoria">Auditoría</option>
+                            <option value="capitalhumano">
+                                Capital Humano
+                            </option>
+                            <option value="mantenimiento">
+                                Mantenimiento
+                            </option>
+                            <option value="sistemas">Sistemas</option>
+                            <option value="contabilidad">
+                                Contabilidad
+                            </option>
+                            <option value="administracion">
+                                Administración
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="opciones_persona">
+
+                        <div class="opcion">
+                            <input type="radio" id="fisica"
+                            name="persona" value="fisica" checked>
+                            <label for="fisica">Persona Física</label>
+                        </div>
+
+                        <div class="opcion">
+                            <input type="radio" id="moral"
+                            name="persona" value="moral">
+                            <label for="moral">Persona Moral</label>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="contenedor_boton">
+                <button type="button" id="btn_validar">
+                    Enviar
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <div class="pie_pagina center">
+        <h2>Eduardo Nahim Moo Canche</h2>
+        <h2>7SB</h2>
+        <h2>Programacion Web</h2>
+    </div>
+
+    <script>
+
+        $("#btn_validar").click(function () {
+
+            if ($("#nombrecompleto").val().trim() == "") {
+                alert("NO ESCRIBISTE TU NOMBRE");
+                $("#nombrecompleto").focus();
+                return false;
+            }
+
+            if ($("#email").val().trim() == "") {
+                alert("NO ESCRIBISTE TU EMAIL");
+                $("#email").focus();
+                return false;
+            }
+
+            let expresionCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!expresionCorreo.test($("#email").val().trim())) {
+                alert("Escribe un email valido");
+                $("#email").focus();
+                return false;
+            }
+
+            if ($("#celular").val().trim() == "") {
+                alert("NO ESCRIBISTE TU CELULAR");
+                $("#celular").focus();
+                return false;
+            }
+
+            let expresionCelular = /^[0-9]{10}$/;
+
+            if (!expresionCelular.test($("#celular").val().trim())) {
+                alert("El celular debe contener 10 numeros");
+                $("#celular").focus();
+                return false;
+            }
+
+            if ($("#area").val() == "") {
+                alert("Debes seleccionar un area de interes");
+                $("#area").focus();
+                return false;
+            }
+
+            if (!$("input[name='persona']").is(":checked")) {
+                alert("Debes seleccionar un tipo de persona");
+                $("#fisica").focus();
+                return false;
+            }
+
+            alert("Formulario validado correctamente");
+
+        });
+
+    </script>
+
+</body>
+</html>
